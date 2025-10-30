@@ -15,8 +15,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.chain.messaging.core.webrtc.CallNotification
-import com.chain.messaging.core.webrtc.CallNotificationType
+import com.chain.messaging.domain.model.CallNotification
+import com.chain.messaging.domain.model.CallNotificationType
 import java.text.SimpleDateFormat
 import java.util.*
 

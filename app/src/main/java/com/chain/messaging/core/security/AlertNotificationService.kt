@@ -1,5 +1,8 @@
 package com.chain.messaging.core.security
 
+import com.chain.messaging.domain.model.SecurityAlert
+import com.chain.messaging.domain.model.SecuritySeverity
+
 /**
  * Service for sending security alert notifications to users
  */

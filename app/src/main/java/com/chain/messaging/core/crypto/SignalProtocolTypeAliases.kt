@@ -61,3 +61,16 @@ data class SignalEncryptedGroupMessage(val data: ByteArray) {
         return data.contentHashCode()
     }
 }
+
+/**
+ * Stub class for group session building (not supported in libsignal 0.42.0)
+ * This is a placeholder to maintain compilation compatibility
+ */
+class SignalGroupSessionBuilder(private val protocolStore: SignalProtocolStoreAdapter) {
+    fun create(senderKeyName: SignalSenderKeyName): SignalSenderKeyRecord {
+        // Create a dummy sender key record with random data
+        val randomData = ByteArray(32)
+        java.security.SecureRandom().nextBytes(randomData)
+        return SignalSenderKeyRecord(randomData)
+    }
+}

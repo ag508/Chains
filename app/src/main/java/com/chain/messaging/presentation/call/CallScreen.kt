@@ -21,8 +21,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.chain.messaging.core.webrtc.CallStatus
-import com.chain.messaging.core.security.NetworkQuality
+import com.chain.messaging.domain.model.CallStatus
+import com.chain.messaging.domain.model.NetworkQuality
 import org.webrtc.RendererCommon
 import org.webrtc.SurfaceViewRenderer
 import org.webrtc.VideoTrack

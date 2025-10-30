@@ -3,7 +3,10 @@ package com.chain.messaging.presentation.call
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chain.messaging.core.webrtc.*
-import com.chain.messaging.core.security.NetworkQuality
+import com.chain.messaging.domain.model.CallEvent
+import com.chain.messaging.domain.model.CallSession
+import com.chain.messaging.domain.model.CallStatus
+import com.chain.messaging.domain.model.NetworkQuality
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

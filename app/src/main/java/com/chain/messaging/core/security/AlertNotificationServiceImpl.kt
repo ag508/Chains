@@ -9,6 +9,8 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.chain.messaging.R
+import com.chain.messaging.domain.model.SecurityAlert
+import com.chain.messaging.domain.model.SecuritySeverity
 import com.chain.messaging.presentation.MainActivity
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter

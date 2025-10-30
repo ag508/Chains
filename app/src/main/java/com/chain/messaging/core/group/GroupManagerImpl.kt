@@ -70,7 +70,7 @@ class GroupManagerImpl @Inject constructor(
             )
             
             // Save to repository
-            chatRepository.insertChat(chat)
+            chatRepository.saveChat(chat)
             
             // Send system message about group creation
             val systemMessage = Message(
@@ -82,7 +82,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = now,
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             Result.success(groupChat)
         } catch (e: Exception) {
@@ -109,7 +109,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             val groupChat = GroupChat(
                 chat = updatedChat,
@@ -147,7 +147,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             // Send system message
             val systemMessage = Message(
@@ -159,7 +159,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = TimeUtils.getCurrentDate(),
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             Result.success(Unit)
         } catch (e: Exception) {
@@ -194,7 +194,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             // Send system message
             val systemMessage = Message(
@@ -206,7 +206,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = TimeUtils.getCurrentDate(),
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             Result.success(Unit)
         } catch (e: Exception) {
@@ -243,7 +243,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             // Send system message
             val systemMessage = Message(
@@ -255,7 +255,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = TimeUtils.getCurrentDate(),
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             Result.success(Unit)
         } catch (e: Exception) {
@@ -293,7 +293,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             // Send system message
             val systemMessage = Message(
@@ -305,7 +305,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = TimeUtils.getCurrentDate(),
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             Result.success(Unit)
         } catch (e: Exception) {
@@ -345,7 +345,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             // Send system message
             val systemMessage = Message(
@@ -357,7 +357,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = TimeUtils.getCurrentDate(),
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             Result.success(Unit)
         } catch (e: Exception) {
@@ -447,7 +447,7 @@ class GroupManagerImpl @Inject constructor(
                 updatedAt = TimeUtils.getCurrentTimestamp()
             )
             
-            chatRepository.updateChat(updatedChat)
+            chatRepository.saveChat(updatedChat)
             
             // Send system message
             val systemMessage = Message(
@@ -459,7 +459,7 @@ class GroupManagerImpl @Inject constructor(
                 timestamp = TimeUtils.getCurrentDate(),
                 status = MessageStatus.SENT
             )
-            messageRepository.insertMessage(systemMessage)
+            messageRepository.saveMessage(systemMessage)
             
             val groupChat = GroupChat(
                 chat = updatedChat,

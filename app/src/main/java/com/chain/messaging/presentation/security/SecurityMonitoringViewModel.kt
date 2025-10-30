@@ -31,7 +31,7 @@ class SecurityMonitoringViewModel @Inject constructor(
     
     private fun observeSecurityStatus() {
         viewModelScope.launch {
-            securityMonitoringManager.getSecurityStatus()
+            securityMonitoringManager.getSecurityStatusFlow()
                 .collect { status ->
                     _uiState.value = _uiState.value.copy(
                         securityStatus = status,
