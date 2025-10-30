@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
 import com.chain.messaging.core.config.AppConfig
+import com.chain.messaging.data.local.dao.CallNotificationDao
 import com.chain.messaging.data.local.dao.ChatDao
 import com.chain.messaging.data.local.dao.DeviceDao
 // import com.chain.messaging.data.local.dao.MediaDao
@@ -18,6 +19,7 @@ import com.chain.messaging.data.local.dao.SecurityEventDao
 import com.chain.messaging.data.local.dao.SyncLogDao
 import com.chain.messaging.data.local.dao.UserDao
 import com.chain.messaging.data.local.dao.UserSettingsDao
+import com.chain.messaging.data.local.entity.CallNotificationEntity
 import com.chain.messaging.data.local.entity.ChatEntity
 // import com.chain.messaging.data.local.entity.MediaEntity
 import com.chain.messaging.data.local.entity.MessageEntity
@@ -49,14 +51,15 @@ import net.sqlcipher.database.SupportFactory
         RegisteredDeviceEntity::class,
         SecurityEventEntity::class,
         SyncLogEntity::class,
-        UserSettingsEntity::class
+        UserSettingsEntity::class,
+        CallNotificationEntity::class
     ],
     version = AppConfig.DATABASE_VERSION,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class ChainDatabase : RoomDatabase() {
-    
+
     abstract fun userDao(): UserDao
     abstract fun messageDao(): MessageDao
     abstract fun chatDao(): ChatDao
@@ -69,6 +72,7 @@ abstract class ChainDatabase : RoomDatabase() {
     abstract fun securityEventDao(): SecurityEventDao
     abstract fun syncLogDao(): SyncLogDao
     abstract fun userSettingsDao(): UserSettingsDao
+    abstract fun callNotificationDao(): CallNotificationDao
     
     companion object {
         

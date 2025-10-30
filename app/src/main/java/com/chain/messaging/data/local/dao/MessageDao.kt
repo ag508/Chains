@@ -88,4 +88,7 @@ interface MessageDao {
     @Transaction
     @Query("SELECT * FROM messages WHERE content LIKE '%' || :query || '%' ORDER BY timestamp DESC")
     suspend fun searchMessagesWithReactions(query: String): List<MessageWithReactions>
+
+    @Query("SELECT * FROM messages WHERE senderId != :currentUserId ORDER BY timestamp DESC")
+    fun getIncomingMessages(currentUserId: String): Flow<List<MessageEntity>>
 }

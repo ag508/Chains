@@ -3,12 +3,13 @@ package com.chain.messaging.core.crypto
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.groups.state.SenderKeyStore
 import org.signal.libsignal.protocol.state.IdentityKeyStore
 import org.signal.libsignal.protocol.state.PreKeyStore
 import org.signal.libsignal.protocol.state.SessionStore
 import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.signal.libsignal.protocol.state.SignedPreKeyStore
+import org.signal.libsignal.protocol.state.KyberPreKeyStore
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,6 +17,8 @@ import javax.inject.Singleton
 /**
  * Adapter that implements Signal Protocol's SignalProtocolStore interface
  * by delegating to our internal store implementations
+ *
+ * Note: SenderKeyStore is not implemented as it's not available in libsignal-android 0.42.0
  */
 @Singleton
 class SignalProtocolStoreAdapter @Inject constructor(
@@ -23,7 +26,7 @@ class SignalProtocolStoreAdapter @Inject constructor(
     private val chainSessionStore: SessionStorageImpl,
     private val chainSenderKeyStore: SenderKeyStoreImpl,
     private val keyManager: KeyManager
-) : SignalProtocolStore, SenderKeyStore {
+) : SignalProtocolStore {
 
     // SignalProtocolStore implementation
     override fun getIdentityKeyPair(): IdentityKeyPair {
@@ -121,42 +124,25 @@ class SignalProtocolStoreAdapter @Inject constructor(
         keyManager.removeSignedPreKey(signedPreKeyId)
     }
 
-    // SenderKeyStore implementation (delegate to our SenderKeyStore)
-    override fun storeSenderKey(
-        senderKeyName: org.signal.libsignal.protocol.groups.SenderKeyName,
-        record: org.signal.libsignal.protocol.groups.state.SenderKeyRecord
-    ) {
-        chainSenderKeyStore.storeSenderKey(senderKeyName, record)
+    // KyberPreKeyStore implementation
+    override fun loadKyberPreKey(kyberPreKeyId: Int): KyberPreKeyRecord {
+        // For now, generate a dummy Kyber prekey
+        // TODO: Implement proper Kyber prekey storage when needed
+        throw UnsupportedOperationException("Kyber prekeys are not yet supported")
     }
 
-    override fun loadSenderKey(
-        senderKeyName: org.signal.libsignal.protocol.groups.SenderKeyName
-    ): org.signal.libsignal.protocol.groups.state.SenderKeyRecord? {
-        return chainSenderKeyStore.loadSenderKey(senderKeyName)
+    override fun storeKyberPreKey(kyberPreKeyId: Int, record: KyberPreKeyRecord) {
+        // TODO: Implement proper Kyber prekey storage when needed
+        throw UnsupportedOperationException("Kyber prekeys are not yet supported")
     }
 
-    // Additional SenderKeyStore methods that might be required
-    override fun storeSenderKey(
-        address: org.signal.libsignal.protocol.SignalProtocolAddress,
-        distributionId: java.util.UUID,
-        record: org.signal.libsignal.protocol.groups.state.SenderKeyRecord
-    ) {
-        val senderKeyName = org.signal.libsignal.protocol.groups.SenderKeyName(
-            distributionId.toString(),
-            address
-        )
-        chainSenderKeyStore.storeSenderKey(senderKeyName, record)
+    override fun containsKyberPreKey(kyberPreKeyId: Int): Boolean {
+        // TODO: Implement proper Kyber prekey storage when needed
+        return false
     }
 
-    override fun loadSenderKey(
-        address: org.signal.libsignal.protocol.SignalProtocolAddress,
-        distributionId: java.util.UUID
-    ): org.signal.libsignal.protocol.groups.state.SenderKeyRecord? {
-        val senderKeyName = org.signal.libsignal.protocol.groups.SenderKeyName(
-            distributionId.toString(),
-            address
-        )
-        return chainSenderKeyStore.loadSenderKey(senderKeyName)
+    override fun markKyberPreKeyUsed(kyberPreKeyId: Int) {
+        // TODO: Implement proper Kyber prekey storage when needed
     }
 
     /**
