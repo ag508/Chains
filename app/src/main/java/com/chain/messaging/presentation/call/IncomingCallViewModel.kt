@@ -65,14 +65,14 @@ class IncomingCallViewModel @Inject constructor(
                         )
                     } else {
                         // Clear the incoming call notification
-                        callNotificationService.clearCallNotification(callId)
-                        
+                        callNotificationService.clearIncomingCallNotification()
+
                         // Show ongoing call notification
                         val pendingCall = _uiState.value.pendingCall
                         if (pendingCall != null) {
                             callNotificationService.showOngoingCallNotification(
                                 callId = callId,
-                                callerName = pendingCall.peerId,
+                                peerName = pendingCall.peerId,
                                 isVideo = pendingCall.isVideo,
                                 duration = "00:00"
                             )
@@ -98,14 +98,13 @@ class IncomingCallViewModel @Inject constructor(
                         )
                     } else {
                         // Clear the incoming call notification
-                        callNotificationService.clearCallNotification(callId)
-                        
+                        callNotificationService.clearIncomingCallNotification()
+
                         // Show missed call notification
                         val pendingCall = _uiState.value.pendingCall
                         if (pendingCall != null) {
                             callNotificationService.showMissedCallNotification(
-                                callId = callId,
-                                callerName = pendingCall.peerId,
+                                peerName = pendingCall.peerId,
                                 isVideo = pendingCall.isVideo,
                                 timestamp = pendingCall.timestamp
                             )
