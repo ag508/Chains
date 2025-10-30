@@ -470,9 +470,9 @@ class CloudStorageManagerImpl @Inject constructor(
                 when (service) {
                     CloudService.GOOGLE_DRIVE -> {
                         val quota = jsonObject["storageQuota"]?.jsonObject
-                        val limit = quota?.get("limit")?.jsonPrimitive?.longOrNull ?: 0L
-                        val usage = quota?.get("usage")?.jsonPrimitive?.longOrNull ?: 0L
-                        
+                        val limit = quota?.get("limit")?.jsonPrimitive?.content?.toLongOrNull() ?: 0L
+                        val usage = quota?.get("usage")?.jsonPrimitive?.content?.toLongOrNull() ?: 0L
+
                         StorageInfo(
                             totalSpace = limit,
                             usedSpace = usage,
@@ -482,9 +482,9 @@ class CloudStorageManagerImpl @Inject constructor(
                     }
                     CloudService.ONEDRIVE -> {
                         val quota = jsonObject["quota"]?.jsonObject
-                        val total = quota?.get("total")?.jsonPrimitive?.longOrNull ?: 0L
-                        val used = quota?.get("used")?.jsonPrimitive?.longOrNull ?: 0L
-                        
+                        val total = quota?.get("total")?.jsonPrimitive?.content?.toLongOrNull() ?: 0L
+                        val used = quota?.get("used")?.jsonPrimitive?.content?.toLongOrNull() ?: 0L
+
                         StorageInfo(
                             totalSpace = total,
                             usedSpace = used,

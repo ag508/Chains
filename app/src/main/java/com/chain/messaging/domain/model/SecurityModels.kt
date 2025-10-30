@@ -467,11 +467,6 @@ enum class NetworkQuality {
 }
 
 /**
- * Exception for security-related operations
- */
-class SecurityException(message: String, cause: Throwable? = null) : Exception(message, cause)
-
-/**
  * Exception for cryptographic operations
  */
 class CryptoException(message: String, cause: Throwable? = null) : Exception(message, cause)

@@ -304,7 +304,7 @@ class CloudAuthManagerImpl @Inject constructor(
             val tokenData = json.parseToJsonElement(responseBody).jsonObject
             val accessToken = tokenData["access_token"]?.jsonPrimitive?.content ?: return null
             val refreshToken = tokenData["refresh_token"]?.jsonPrimitive?.contentOrNull
-            val expiresIn = tokenData["expires_in"]?.jsonPrimitive?.longOrNull ?: 3600
+            val expiresIn = tokenData["expires_in"]?.jsonPrimitive?.content?.toLongOrNull() ?: 3600L
             val tokenType = tokenData["token_type"]?.jsonPrimitive?.content ?: "Bearer"
             val scope = tokenData["scope"]?.jsonPrimitive?.contentOrNull
             

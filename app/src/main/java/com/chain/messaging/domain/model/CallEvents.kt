@@ -6,7 +6,7 @@ import java.io.File
  * Call event sealed class for WebRTC call management
  */
 sealed class CallEvent {
-    data class IncomingCall(val callSession: CallSession) : CallEvent()
+    data class IncomingCallEvent(val callSession: CallSession) : CallEvent()
     data class CallAccepted(val callId: String, val callSession: CallSession? = null) : CallEvent()
     data class CallDeclined(val callId: String) : CallEvent()
     data class CallEnded(val callId: String, val reason: String) : CallEvent()
@@ -14,7 +14,7 @@ sealed class CallEvent {
     data class RemoteStreamAdded(val callId: String, val stream: Any) : CallEvent()
     data class RemoteStreamRemoved(val callId: String, val stream: Any) : CallEvent()
     data class IceCandidateReceived(val callId: String, val candidate: Any) : CallEvent()
-    
+
     // State machine events
     object InitiateCall : CallEvent()
     object IncomingCall : CallEvent()
@@ -116,4 +116,28 @@ enum class CallStatus {
     CONNECTED,
     ENDED,
     FAILED
+}
+
+/**
+ * Call notification data class
+ */
+data class CallNotification(
+    val id: String,
+    val callId: String,
+    val type: CallNotificationType,
+    val peerName: String,
+    val peerId: String,
+    val timestamp: Long,
+    val isVideo: Boolean,
+    val duration: Long? = null
+)
+
+/**
+ * Types of call notifications
+ */
+enum class CallNotificationType {
+    INCOMING,
+    MISSED,
+    OUTGOING,
+    REJECTED
 }
