@@ -3,7 +3,7 @@ package com.chain.messaging.presentation.call
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chain.messaging.domain.model.CallNotification
-import com.chain.messaging.core.webrtc.CallNotificationService
+import com.chain.messaging.domain.repository.CallNotificationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -15,19 +15,18 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class CallHistoryViewModel @Inject constructor(
-    private val callNotificationService: CallNotificationService
+    private val callNotificationRepository: CallNotificationRepository
 ) : ViewModel() {
-    
+
     private val _uiState = MutableStateFlow(CallHistoryUiState())
     val uiState: StateFlow<CallHistoryUiState> = _uiState.asStateFlow()
-    
+
     init {
         // Observe call notifications for real-time updates
         viewModelScope.launch {
-            callNotificationService.callNotifications.collect { notifications ->
-                val sortedHistory = notifications.values
-                    .sortedByDescending { it.timestamp }
-                
+            callNotificationRepository.observeCallNotifications().collect { notifications ->
+                val sortedHistory = notifications.sortedByDescending { it.timestamp }
+
                 _uiState.value = _uiState.value.copy(
                     callHistory = sortedHistory,
                     isLoading = false
@@ -35,16 +34,15 @@ class CallHistoryViewModel @Inject constructor(
             }
         }
     }
-    
+
     fun loadCallHistory() {
         _uiState.value = _uiState.value.copy(isLoading = true, error = null)
-        
+
         viewModelScope.launch {
             try {
-                val allNotifications = callNotificationService.getAllCallNotifications()
-                val sortedHistory = allNotifications.values
-                    .sortedByDescending { it.timestamp }
-                
+                val allNotifications = callNotificationRepository.getAllCallNotifications()
+                val sortedHistory = allNotifications.sortedByDescending { it.timestamp }
+
                 _uiState.value = _uiState.value.copy(
                     callHistory = sortedHistory,
                     isLoading = false
@@ -57,11 +55,11 @@ class CallHistoryViewModel @Inject constructor(
             }
         }
     }
-    
+
     fun deleteCallFromHistory(callId: String) {
         viewModelScope.launch {
             try {
-                callNotificationService.clearCallNotification(callId)
+                callNotificationRepository.clearCallNotification(callId)
                 
                 // Update local state
                 val currentHistory = _uiState.value.callHistory
