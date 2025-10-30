@@ -370,7 +370,7 @@ class GroupEncryptionManagerImpl @Inject constructor(
                 groupId = groupId,
                 senderId = senderId,
                 deviceId = deviceId,
-                distributionData = senderKeyRecord.serialize(),
+                distributionData = senderKeyRecord.data,
                 timestamp = System.currentTimeMillis(),
                 version = ENCRYPTION_VERSION
             )

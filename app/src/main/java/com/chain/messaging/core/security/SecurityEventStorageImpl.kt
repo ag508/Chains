@@ -2,6 +2,9 @@ package com.chain.messaging.core.security
 
 import com.chain.messaging.data.local.dao.SecurityEventDao
 import com.chain.messaging.data.local.entity.SecurityEventEntity
+import com.chain.messaging.domain.model.SecurityEvent
+import com.chain.messaging.domain.model.SecurityEventType
+import com.chain.messaging.domain.model.SecuritySeverity
 import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.inject.Singleton

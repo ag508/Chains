@@ -4,6 +4,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
+import com.chain.messaging.domain.model.SecuritySeverity
+import com.chain.messaging.domain.model.ThreatIndicator
+import com.chain.messaging.domain.model.ThreatType
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.time.LocalDateTime

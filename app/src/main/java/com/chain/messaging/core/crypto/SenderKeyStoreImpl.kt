@@ -3,9 +3,6 @@ package com.chain.messaging.core.crypto
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-// Import Signal Protocol types directly
-import org.signal.libsignal.protocol.groups.SenderKeyName
-import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -39,21 +36,22 @@ class SenderKeyStoreImpl @Inject constructor(
         )
     }
 
-    override fun storeSenderKey(senderKeyName: SenderKeyName, record: SenderKeyRecord) {
+    override fun storeSenderKey(senderKeyName: SignalSenderKeyName, record: SignalSenderKeyRecord) {
         val key = getSenderKeyKey(senderKeyName)
-        val serializedRecord = String(record.serialize())
-        
+        val serializedRecord = android.util.Base64.encodeToString(record.data, android.util.Base64.DEFAULT)
+
         encryptedPrefs.edit()
             .putString(key, serializedRecord)
             .apply()
     }
 
-    override fun loadSenderKey(senderKeyName: SenderKeyName): SenderKeyRecord? {
+    override fun loadSenderKey(senderKeyName: SignalSenderKeyName): SignalSenderKeyRecord? {
         val key = getSenderKeyKey(senderKeyName)
         val serializedRecord = encryptedPrefs.getString(key, null) ?: return null
-        
+
         return try {
-            SenderKeyRecord(serializedRecord.toByteArray())
+            val data = android.util.Base64.decode(serializedRecord, android.util.Base64.DEFAULT)
+            SignalSenderKeyRecord(data)
         } catch (e: Exception) {
             // If record is corrupted, return null
             null
@@ -63,7 +61,7 @@ class SenderKeyStoreImpl @Inject constructor(
     /**
      * Remove a sender key record
      */
-    fun removeSenderKey(senderKeyName: SenderKeyName) {
+    fun removeSenderKey(senderKeyName: SignalSenderKeyName) {
         val key = getSenderKeyKey(senderKeyName)
         encryptedPrefs.edit()
             .remove(key)
@@ -87,7 +85,7 @@ class SenderKeyStoreImpl @Inject constructor(
     /**
      * Get all sender key names for a specific group
      */
-    fun getSenderKeyNamesForGroup(groupId: String): List<SenderKeyName> {
+    fun getSenderKeyNamesForGroup(groupId: String): List<SignalSenderKeyName> {
         val prefix = "group_${groupId}_"
         return encryptedPrefs.all.keys
             .filter { it.startsWith(prefix) }
@@ -97,8 +95,8 @@ class SenderKeyStoreImpl @Inject constructor(
                     if (parts.size == 2) {
                         val senderName = parts[0]
                         val deviceId = parts[1].toInt()
-                        SenderKeyName(
-                            groupId, 
+                        SignalSenderKeyName(
+                            groupId,
                             SignalProtocolAddress(senderName, deviceId)
                         )
                     } else null
@@ -115,7 +113,7 @@ class SenderKeyStoreImpl @Inject constructor(
         encryptedPrefs.edit().clear().apply()
     }
 
-    private fun getSenderKeyKey(senderKeyName: SenderKeyName): String {
+    private fun getSenderKeyKey(senderKeyName: SignalSenderKeyName): String {
         return "group_${senderKeyName.groupId}_${senderKeyName.sender.name}_device_${senderKeyName.sender.deviceId}"
     }
 }
