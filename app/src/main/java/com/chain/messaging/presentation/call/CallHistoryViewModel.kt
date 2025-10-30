@@ -2,7 +2,7 @@ package com.chain.messaging.presentation.call
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chain.messaging.core.webrtc.CallNotification
+import com.chain.messaging.domain.model.CallNotification
 import com.chain.messaging.core.webrtc.CallNotificationService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
