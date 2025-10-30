@@ -1,0 +1,733 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.chain.messaging.debug"
+4    android:versionCode="1"
+5    android:versionName="1.0-debug" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Network permissions for blockchain and P2P communication -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:6:5-67
+12-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:6:22-64
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:7:5-79
+13-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:7:22-76
+14
+15    <!-- Storage permissions for media and file handling -->
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:10:5-80
+16-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:10:22-77
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:11:5-81
+17-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:11:22-78
+18
+19    <!-- Camera and microphone for media messages and calls -->
+20    <uses-permission android:name="android.permission.CAMERA" />
+20-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:14:5-65
+20-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:14:22-62
+21    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+21-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:15:5-71
+21-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:15:22-68
+22
+23    <!-- Biometric authentication -->
+24    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+24-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:18:5-72
+24-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:18:22-69
+25    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+25-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:19:5-74
+25-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:19:22-71
+26
+27    <!-- Notifications -->
+28    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+28-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:22:5-77
+28-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:22:22-74
+29
+30    <!-- System settings access for ringtones -->
+31    <uses-permission android:name="android.permission.READ_SETTINGS" />
+31-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:25:5-72
+31-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:25:22-69
+32
+33    <!-- Wake lock for background operations -->
+34    <uses-permission android:name="android.permission.WAKE_LOCK" />
+34-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:28:5-68
+34-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:28:22-65
+35    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+35-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:5-81
+35-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:22-78
+36    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+36-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:5-77
+36-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:22-74
+37
+38    <permission
+38-->[androidx.core:core:1.12.0] C:\Users\gupta\.gradle\caches\transforms-3\2f5d1ac6caa1e6d131beccaab74bd9b2\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+39        android:name="com.chain.messaging.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+39-->[androidx.core:core:1.12.0] C:\Users\gupta\.gradle\caches\transforms-3\2f5d1ac6caa1e6d131beccaab74bd9b2\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+40        android:protectionLevel="signature" />
+40-->[androidx.core:core:1.12.0] C:\Users\gupta\.gradle\caches\transforms-3\2f5d1ac6caa1e6d131beccaab74bd9b2\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+41
+42    <uses-permission android:name="com.chain.messaging.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
+42-->[androidx.core:core:1.12.0] C:\Users\gupta\.gradle\caches\transforms-3\2f5d1ac6caa1e6d131beccaab74bd9b2\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+42-->[androidx.core:core:1.12.0] C:\Users\gupta\.gradle\caches\transforms-3\2f5d1ac6caa1e6d131beccaab74bd9b2\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+43    <uses-feature
+43-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:25:5-27:36
+44        android:name="android.hardware.camera"
+44-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:26:9-47
+45        android:required="false" />
+45-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:27:9-33
+46    <uses-feature
+46-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:28:5-30:36
+47        android:name="android.hardware.camera.front"
+47-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:29:9-53
+48        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
+48-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:30:9-33
+49    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+50    <uses-feature
+50-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:33:5-35:36
+51        android:name="android.hardware.camera.autofocus"
+51-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:34:9-57
+52        android:required="false" />
+52-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:35:9-33
+53    <uses-feature
+53-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:36:5-38:36
+54        android:name="android.hardware.camera.flash"
+54-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:37:9-53
+55        android:required="false" />
+55-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:38:9-33
+56    <uses-feature
+56-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:39:5-41:36
+57        android:name="android.hardware.screen.landscape"
+57-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:40:9-57
+58        android:required="false" />
+58-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:41:9-33
+59    <uses-feature
+59-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:42:5-44:36
+60        android:name="android.hardware.wifi"
+60-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:43:9-45
+61        android:required="false" />
+61-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:44:9-33
+62
+63    <application
+63-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:30:5-84:19
+64        android:name="com.chain.messaging.ChainApplication"
+64-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:31:9-41
+65        android:allowBackup="true"
+65-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:32:9-35
+66        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+66-->[androidx.core:core:1.12.0] C:\Users\gupta\.gradle\caches\transforms-3\2f5d1ac6caa1e6d131beccaab74bd9b2\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+67        android:dataExtractionRules="@xml/data_extraction_rules"
+67-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:33:9-65
+68        android:debuggable="true"
+69        android:extractNativeLibs="false"
+70        android:fullBackupContent="@xml/backup_rules"
+70-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:34:9-54
+71        android:icon="@mipmap/ic_launcher"
+71-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:35:9-43
+72        android:label="@string/app_name"
+72-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:36:9-41
+73        android:roundIcon="@mipmap/ic_launcher_round"
+73-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:37:9-54
+74        android:supportsRtl="true"
+74-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:38:9-35
+75        android:theme="@style/Theme.Chain" >
+75-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:39:9-43
+76        <activity
+76-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:42:9-61:20
+77            android:name="com.chain.messaging.presentation.MainActivity"
+77-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:43:13-54
+78            android:exported="true"
+78-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:44:13-36
+79            android:label="@string/app_name"
+79-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:45:13-45
+80            android:launchMode="singleTop"
+80-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:47:13-43
+81            android:theme="@style/Theme.Chain" >
+81-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:46:13-47
+82            <intent-filter>
+82-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:48:13-51:29
+83                <action android:name="android.intent.action.MAIN" />
+83-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:49:17-69
+83-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:49:25-66
+84
+85                <category android:name="android.intent.category.LAUNCHER" />
+85-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:50:17-77
+85-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:50:27-74
+86            </intent-filter>
+87
+88            <!-- OAuth callback intent filter -->
+89            <intent-filter android:autoVerify="true" >
+89-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:54:13-60:29
+89-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:54:28-53
+90                <action android:name="android.intent.action.VIEW" />
+90-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:55:17-69
+90-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:55:25-66
+91
+92                <category android:name="android.intent.category.DEFAULT" />
+92-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:56:17-76
+92-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:56:27-73
+93                <category android:name="android.intent.category.BROWSABLE" />
+93-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:57:17-78
+93-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:57:27-75
+94
+95                <data
+95-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:58:17-59:46
+96                    android:host="oauth"
+96-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:59:23-43
+97                    android:scheme="com.chain.messaging" />
+97-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:58:23-59
+98            </intent-filter>
+99        </activity>
+100
+101        <!-- FileProvider for camera image capture -->
+102        <provider
+103            android:name="androidx.core.content.FileProvider"
+103-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:65:13-62
+104            android:authorities="com.chain.messaging.debug.fileprovider"
+104-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:66:13-64
+105            android:exported="false"
+105-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:67:13-37
+106            android:grantUriPermissions="true" >
+106-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:68:13-47
+107            <meta-data
+107-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:69:13-71:54
+108                android:name="android.support.FILE_PROVIDER_PATHS"
+108-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:70:17-67
+109                android:resource="@xml/file_paths" />
+109-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:71:17-51
+110        </provider>
+111
+112        <!-- Notification action receiver -->
+113        <receiver
+113-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:75:9-83:20
+114            android:name="com.chain.messaging.core.notification.NotificationActionReceiver"
+114-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:76:13-73
+115            android:exported="false" >
+115-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:77:13-37
+116            <intent-filter>
+116-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:78:13-82:29
+117                <action android:name="ACTION_REPLY" />
+117-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:79:17-55
+117-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:79:25-52
+118                <action android:name="ACTION_MARK_READ" />
+118-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:80:17-59
+118-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:80:25-56
+119                <action android:name="ACTION_MUTE_CHAT" />
+119-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:81:17-59
+119-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:81:25-56
+120            </intent-filter>
+121        </receiver>
+122
+123        <service
+123-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:24:9-33:19
+124            android:name="androidx.camera.core.impl.MetadataHolderService"
+124-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:25:13-75
+125            android:enabled="false"
+125-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:26:13-36
+126            android:exported="false" >
+126-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:27:13-37
+127            <meta-data
+127-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:30:13-32:89
+128                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+128-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:31:17-103
+129                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+129-->[androidx.camera:camera-camera2:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\84d627d30933e8dd1076dfa4f83d4ac2\transformed\camera-camera2-1.3.1\AndroidManifest.xml:32:17-86
+130        </service>
+131        <service
+131-->[com.google.firebase:firebase-auth-ktx:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\1537ac4e7da537050e1e9a4e3b747442\transformed\firebase-auth-ktx-22.3.0\AndroidManifest.xml:8:9-14:19
+132            android:name="com.google.firebase.components.ComponentDiscoveryService"
+132-->[com.google.firebase:firebase-auth-ktx:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\1537ac4e7da537050e1e9a4e3b747442\transformed\firebase-auth-ktx-22.3.0\AndroidManifest.xml:9:13-84
+133            android:directBootAware="true"
+133-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:32:13-43
+134            android:exported="false" >
+134-->[com.google.firebase:firebase-auth-ktx:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\1537ac4e7da537050e1e9a4e3b747442\transformed\firebase-auth-ktx-22.3.0\AndroidManifest.xml:10:13-37
+135            <meta-data
+135-->[com.google.firebase:firebase-auth-ktx:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\1537ac4e7da537050e1e9a4e3b747442\transformed\firebase-auth-ktx-22.3.0\AndroidManifest.xml:11:13-13:85
+136                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthLegacyRegistrar"
+136-->[com.google.firebase:firebase-auth-ktx:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\1537ac4e7da537050e1e9a4e3b747442\transformed\firebase-auth-ktx-22.3.0\AndroidManifest.xml:12:17-119
+137                android:value="com.google.firebase.components.ComponentRegistrar" />
+137-->[com.google.firebase:firebase-auth-ktx:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\1537ac4e7da537050e1e9a4e3b747442\transformed\firebase-auth-ktx-22.3.0\AndroidManifest.xml:13:17-82
+138            <meta-data
+138-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:69:13-71:85
+139                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+139-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:70:17-109
+140                android:value="com.google.firebase.components.ComponentRegistrar" />
+140-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:71:17-82
+141            <meta-data
+141-->[com.google.firebase:firebase-firestore-ktx:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\8faf846a79c5f7ca879f911f692edf3a\transformed\firebase-firestore-ktx-24.10.0\AndroidManifest.xml:12:13-14:85
+142                android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreLegacyRegistrar"
+142-->[com.google.firebase:firebase-firestore-ktx:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\8faf846a79c5f7ca879f911f692edf3a\transformed\firebase-firestore-ktx-24.10.0\AndroidManifest.xml:13:17-129
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[com.google.firebase:firebase-firestore-ktx:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\8faf846a79c5f7ca879f911f692edf3a\transformed\firebase-firestore-ktx-24.10.0\AndroidManifest.xml:14:17-82
+144            <meta-data
+144-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\bb9e81e80611e36ca18be2465c7c2864\transformed\firebase-firestore-24.10.0\AndroidManifest.xml:17:13-19:85
+145                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+145-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\bb9e81e80611e36ca18be2465c7c2864\transformed\firebase-firestore-24.10.0\AndroidManifest.xml:18:17-122
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\bb9e81e80611e36ca18be2465c7c2864\transformed\firebase-firestore-24.10.0\AndroidManifest.xml:19:17-82
+147            <meta-data
+147-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\bb9e81e80611e36ca18be2465c7c2864\transformed\firebase-firestore-24.10.0\AndroidManifest.xml:20:13-22:85
+148                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+148-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\bb9e81e80611e36ca18be2465c7c2864\transformed\firebase-firestore-24.10.0\AndroidManifest.xml:21:17-111
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\gupta\.gradle\caches\transforms-3\bb9e81e80611e36ca18be2465c7c2864\transformed\firebase-firestore-24.10.0\AndroidManifest.xml:22:17-82
+150            <meta-data
+150-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\5e8c00c7149c9db3ae459e8134a1ad92\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
+151                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+151-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\5e8c00c7149c9db3ae459e8134a1ad92\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
+152                android:value="com.google.firebase.components.ComponentRegistrar" />
+152-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\5e8c00c7149c9db3ae459e8134a1ad92\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
+153            <meta-data
+153-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
+154                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+154-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:36:17-109
+155                android:value="com.google.firebase.components.ComponentRegistrar" />
+155-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:37:17-82
+156        </service>
+157
+158        <activity
+158-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:29:9-46:20
+159            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+159-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:30:13-80
+160            android:excludeFromRecents="true"
+160-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:31:13-46
+161            android:exported="true"
+161-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:32:13-36
+162            android:launchMode="singleTask"
+162-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:33:13-44
+163            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+163-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:34:13-72
+164            <intent-filter>
+164-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:35:13-45:29
+165                <action android:name="android.intent.action.VIEW" />
+165-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:55:17-69
+165-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:55:25-66
+166
+167                <category android:name="android.intent.category.DEFAULT" />
+167-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:56:17-76
+167-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:56:27-73
+168                <category android:name="android.intent.category.BROWSABLE" />
+168-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:57:17-78
+168-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:57:27-75
+169
+170                <data
+170-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:58:17-59:46
+171                    android:host="firebase.auth"
+171-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:59:23-43
+172                    android:path="/"
+173                    android:scheme="genericidp" />
+173-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:58:23-59
+174            </intent-filter>
+175        </activity>
+176        <activity
+176-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:47:9-64:20
+177            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+177-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:48:13-79
+178            android:excludeFromRecents="true"
+178-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:49:13-46
+179            android:exported="true"
+179-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:50:13-36
+180            android:launchMode="singleTask"
+180-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:51:13-44
+181            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+181-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:52:13-72
+182            <intent-filter>
+182-->[com.google.firebase:firebase-auth:22.3.0] C:\Users\gupta\.gradle\caches\transforms-3\de9e1d90ba8e05101d652f4ce03c0f44\transformed\firebase-auth-22.3.0\AndroidManifest.xml:53:13-63:29
+183                <action android:name="android.intent.action.VIEW" />
+183-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:55:17-69
+183-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:55:25-66
+184
+185                <category android:name="android.intent.category.DEFAULT" />
+185-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:56:17-76
+185-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:56:27-73
+186                <category android:name="android.intent.category.BROWSABLE" />
+186-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:57:17-78
+186-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:57:27-75
+187
+188                <data
+188-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:58:17-59:46
+189                    android:host="firebase.auth"
+189-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:59:23-43
+190                    android:path="/"
+191                    android:scheme="recaptcha" />
+191-->C:\Users\gupta\Downloads\Task\Chain\app\src\main\AndroidManifest.xml:58:23-59
+192            </intent-filter>
+193        </activity>
+194
+195        <service
+195-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:24:9-32:19
+196            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+196-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:25:13-94
+197            android:enabled="true"
+197-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:26:13-35
+198            android:exported="false" >
+198-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:27:13-37
+199            <meta-data
+199-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:29:13-31:104
+200                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+200-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:30:17-76
+201                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+201-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:31:17-101
+202        </service>
+203
+204        <activity
+204-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:34:9-41:20
+205            android:name="androidx.credentials.playservices.HiddenActivity"
+205-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:35:13-76
+206            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+206-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:36:13-87
+207            android:enabled="true"
+207-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:37:13-35
+208            android:exported="false"
+208-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:38:13-37
+209            android:fitsSystemWindows="true"
+209-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:39:13-45
+210            android:theme="@style/Theme.Hidden" >
+210-->[androidx.credentials:credentials-play-services-auth:1.2.2] C:\Users\gupta\.gradle\caches\transforms-3\c2404b0b8c0a06e6f9bf3f9b881ff6f6\transformed\credentials-play-services-auth-1.2.2\AndroidManifest.xml:40:13-48
+211        </activity>
+212        <activity
+212-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
+213            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+213-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:24:13-93
+214            android:excludeFromRecents="true"
+214-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:25:13-46
+215            android:exported="false"
+215-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:26:13-37
+216            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+216-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:27:13-72
+217        <!--
+218            Service handling Google Sign-In user revocation. For apps that do not integrate with
+219            Google Sign-In, this service will never be started.
+220        -->
+221        <service
+221-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:33:9-37:51
+222            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+222-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:34:13-89
+223            android:exported="true"
+223-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:35:13-36
+224            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+224-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:36:13-107
+225            android:visibleToInstantApps="true" />
+225-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\gupta\.gradle\caches\transforms-3\2cda4048ab417c45a237a77f8aabd5ae\transformed\play-services-auth-20.7.0\AndroidManifest.xml:37:13-48
+226
+227        <activity
+227-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\gupta\.gradle\caches\transforms-3\b66d4af178436eb534a3706b7761fd17\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+228            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+228-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\gupta\.gradle\caches\transforms-3\b66d4af178436eb534a3706b7761fd17\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+229            android:exported="false"
+229-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\gupta\.gradle\caches\transforms-3\b66d4af178436eb534a3706b7761fd17\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+230            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+230-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\gupta\.gradle\caches\transforms-3\b66d4af178436eb534a3706b7761fd17\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+231
+232        <provider
+232-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
+233            android:name="com.google.firebase.provider.FirebaseInitProvider"
+233-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:24:13-77
+234            android:authorities="com.chain.messaging.debug.firebaseinitprovider"
+234-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:25:13-72
+235            android:directBootAware="true"
+235-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:26:13-43
+236            android:exported="false"
+236-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:27:13-37
+237            android:initOrder="100" />
+237-->[com.google.firebase:firebase-common:20.4.2] C:\Users\gupta\.gradle\caches\transforms-3\4ea6122ef0e1d7b49a97d6f64e061510\transformed\firebase-common-20.4.2\AndroidManifest.xml:28:13-36
+238
+239        <service
+239-->[androidx.room:room-runtime:2.6.1] C:\Users\gupta\.gradle\caches\transforms-3\e5ccefcf404a5458f6cda3358906ddaa\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+240            android:name="androidx.room.MultiInstanceInvalidationService"
+240-->[androidx.room:room-runtime:2.6.1] C:\Users\gupta\.gradle\caches\transforms-3\e5ccefcf404a5458f6cda3358906ddaa\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+241            android:directBootAware="true"
+241-->[androidx.room:room-runtime:2.6.1] C:\Users\gupta\.gradle\caches\transforms-3\e5ccefcf404a5458f6cda3358906ddaa\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+242            android:exported="false" />
+242-->[androidx.room:room-runtime:2.6.1] C:\Users\gupta\.gradle\caches\transforms-3\e5ccefcf404a5458f6cda3358906ddaa\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+243
+244        <provider
+244-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:29:9-37:20
+245            android:name="androidx.startup.InitializationProvider"
+245-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:30:13-67
+246            android:authorities="com.chain.messaging.debug.androidx-startup"
+246-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:31:13-68
+247            android:exported="false" >
+247-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:32:13-37
+248            <meta-data
+248-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:34:13-36:52
+249                android:name="androidx.work.WorkManagerInitializer"
+249-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:35:17-68
+250                android:value="androidx.startup" />
+250-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:36:17-49
+251            <meta-data
+251-->[androidx.emoji2:emoji2:1.4.0] C:\Users\gupta\.gradle\caches\transforms-3\02f64eae9b05cc2d6c5c11cefc4cad36\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+252                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+252-->[androidx.emoji2:emoji2:1.4.0] C:\Users\gupta\.gradle\caches\transforms-3\02f64eae9b05cc2d6c5c11cefc4cad36\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+253                android:value="androidx.startup" />
+253-->[androidx.emoji2:emoji2:1.4.0] C:\Users\gupta\.gradle\caches\transforms-3\02f64eae9b05cc2d6c5c11cefc4cad36\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+254            <meta-data
+254-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\gupta\.gradle\caches\transforms-3\cbf9bd0e36ca958c448bef3b8c3db09a\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+255                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+255-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\gupta\.gradle\caches\transforms-3\cbf9bd0e36ca958c448bef3b8c3db09a\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+256                android:value="androidx.startup" />
+256-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\gupta\.gradle\caches\transforms-3\cbf9bd0e36ca958c448bef3b8c3db09a\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+257            <meta-data
+257-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+258                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+258-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+259                android:value="androidx.startup" />
+259-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+260        </provider>
+261
+262        <service
+262-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:39:9-45:35
+263            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+263-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:40:13-88
+264            android:directBootAware="false"
+264-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:41:13-44
+265            android:enabled="@bool/enable_system_alarm_service_default"
+265-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:42:13-72
+266            android:exported="false" />
+266-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:43:13-37
+267        <service
+267-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:46:9-52:35
+268            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+268-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:47:13-84
+269            android:directBootAware="false"
+269-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:48:13-44
+270            android:enabled="@bool/enable_system_job_service_default"
+270-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:49:13-70
+271            android:exported="true"
+271-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:50:13-36
+272            android:permission="android.permission.BIND_JOB_SERVICE" />
+272-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:51:13-69
+273        <service
+273-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:53:9-59:35
+274            android:name="androidx.work.impl.foreground.SystemForegroundService"
+274-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:54:13-81
+275            android:directBootAware="false"
+275-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:55:13-44
+276            android:enabled="@bool/enable_system_foreground_service_default"
+276-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:56:13-77
+277            android:exported="false" />
+277-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:57:13-37
+278
+279        <receiver
+279-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:61:9-66:35
+280            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+280-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:62:13-88
+281            android:directBootAware="false"
+281-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:63:13-44
+282            android:enabled="true"
+282-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:64:13-35
+283            android:exported="false" />
+283-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:65:13-37
+284        <receiver
+284-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:67:9-77:20
+285            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+285-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:68:13-106
+286            android:directBootAware="false"
+286-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:69:13-44
+287            android:enabled="false"
+287-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:70:13-36
+288            android:exported="false" >
+288-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:71:13-37
+289            <intent-filter>
+289-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:73:13-76:29
+290                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+290-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:17-87
+290-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:25-84
+291                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+291-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:17-90
+291-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:25-87
+292            </intent-filter>
+293        </receiver>
+294        <receiver
+294-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:78:9-88:20
+295            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+295-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:79:13-104
+296            android:directBootAware="false"
+296-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:80:13-44
+297            android:enabled="false"
+297-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:81:13-36
+298            android:exported="false" >
+298-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:82:13-37
+299            <intent-filter>
+299-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:84:13-87:29
+300                <action android:name="android.intent.action.BATTERY_OKAY" />
+300-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:17-77
+300-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:25-74
+301                <action android:name="android.intent.action.BATTERY_LOW" />
+301-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:17-76
+301-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:25-73
+302            </intent-filter>
+303        </receiver>
+304        <receiver
+304-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:89:9-99:20
+305            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+305-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:90:13-104
+306            android:directBootAware="false"
+306-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:91:13-44
+307            android:enabled="false"
+307-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:92:13-36
+308            android:exported="false" >
+308-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:93:13-37
+309            <intent-filter>
+309-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:95:13-98:29
+310                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+310-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:17-83
+310-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:25-80
+311                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+311-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:17-82
+311-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:25-79
+312            </intent-filter>
+313        </receiver>
+314        <receiver
+314-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:100:9-109:20
+315            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+315-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:101:13-103
+316            android:directBootAware="false"
+316-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:102:13-44
+317            android:enabled="false"
+317-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:103:13-36
+318            android:exported="false" >
+318-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:104:13-37
+319            <intent-filter>
+319-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:106:13-108:29
+320                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+320-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:17-79
+320-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:25-76
+321            </intent-filter>
+322        </receiver>
+323        <receiver
+323-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:110:9-121:20
+324            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+324-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:111:13-88
+325            android:directBootAware="false"
+325-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:112:13-44
+326            android:enabled="false"
+326-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:113:13-36
+327            android:exported="false" >
+327-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:114:13-37
+328            <intent-filter>
+328-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:116:13-120:29
+329                <action android:name="android.intent.action.BOOT_COMPLETED" />
+329-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:17-79
+329-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:25-76
+330                <action android:name="android.intent.action.TIME_SET" />
+330-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:17-73
+330-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:25-70
+331                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+331-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:17-81
+331-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:25-78
+332            </intent-filter>
+333        </receiver>
+334        <receiver
+334-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:122:9-131:20
+335            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+335-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:123:13-99
+336            android:directBootAware="false"
+336-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:124:13-44
+337            android:enabled="@bool/enable_system_alarm_service_default"
+337-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:125:13-72
+338            android:exported="false" >
+338-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:126:13-37
+339            <intent-filter>
+339-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:128:13-130:29
+340                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+340-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:17-98
+340-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:25-95
+341            </intent-filter>
+342        </receiver>
+343        <receiver
+343-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:132:9-142:20
+344            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+344-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:133:13-78
+345            android:directBootAware="false"
+345-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:134:13-44
+346            android:enabled="true"
+346-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:135:13-35
+347            android:exported="true"
+347-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:136:13-36
+348            android:permission="android.permission.DUMP" >
+348-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:137:13-57
+349            <intent-filter>
+349-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:139:13-141:29
+350                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+350-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:17-88
+350-->[androidx.work:work-runtime:2.9.0] C:\Users\gupta\.gradle\caches\transforms-3\1dd944d421de5dee79449e9244ffbb2f\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:25-85
+351            </intent-filter>
+352        </receiver>
+353
+354        <activity
+354-->[androidx.compose.ui:ui-test-manifest:1.5.4] C:\Users\gupta\.gradle\caches\transforms-3\4d9556160cb79e8486c8e7af9e09de49\transformed\ui-test-manifest-1.5.4\AndroidManifest.xml:23:9-25:39
+355            android:name="androidx.activity.ComponentActivity"
+355-->[androidx.compose.ui:ui-test-manifest:1.5.4] C:\Users\gupta\.gradle\caches\transforms-3\4d9556160cb79e8486c8e7af9e09de49\transformed\ui-test-manifest-1.5.4\AndroidManifest.xml:24:13-63
+356            android:exported="true" />
+356-->[androidx.compose.ui:ui-test-manifest:1.5.4] C:\Users\gupta\.gradle\caches\transforms-3\4d9556160cb79e8486c8e7af9e09de49\transformed\ui-test-manifest-1.5.4\AndroidManifest.xml:25:13-36
+357        <activity
+357-->[androidx.compose.ui:ui-tooling-android:1.5.4] C:\Users\gupta\.gradle\caches\transforms-3\2706ff432c20daa37911e5b0ab66c12d\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+358            android:name="androidx.compose.ui.tooling.PreviewActivity"
+358-->[androidx.compose.ui:ui-tooling-android:1.5.4] C:\Users\gupta\.gradle\caches\transforms-3\2706ff432c20daa37911e5b0ab66c12d\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+359            android:exported="true" />
+359-->[androidx.compose.ui:ui-tooling-android:1.5.4] C:\Users\gupta\.gradle\caches\transforms-3\2706ff432c20daa37911e5b0ab66c12d\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+360
+361        <meta-data
+361-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\gupta\.gradle\caches\transforms-3\994b9b169b47857ecf120af414149e7a\transformed\play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+362            android:name="com.google.android.gms.version"
+362-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\gupta\.gradle\caches\transforms-3\994b9b169b47857ecf120af414149e7a\transformed\play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+363            android:value="@integer/google_play_services_version" />
+363-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\gupta\.gradle\caches\transforms-3\994b9b169b47857ecf120af414149e7a\transformed\play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+364
+365        <receiver
+365-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+366            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+366-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+367            android:directBootAware="false"
+367-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+368            android:enabled="true"
+368-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+369            android:exported="true"
+369-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+370            android:permission="android.permission.DUMP" >
+370-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+371            <intent-filter>
+371-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+372                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+372-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+372-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+373            </intent-filter>
+374            <intent-filter>
+374-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+375                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+375-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+375-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+376            </intent-filter>
+377            <intent-filter>
+377-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+378                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+378-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+378-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+379            </intent-filter>
+380            <intent-filter>
+380-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+381                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+381-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+381-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\gupta\.gradle\caches\transforms-3\6d60e096c25f39e27d3c4c45ef3b19ff\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+382            </intent-filter>
+383        </receiver>
+384
+385        <activity
+385-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:47:9-53:63
+386            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+386-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:48:13-74
+387            android:clearTaskOnLaunch="true"
+387-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:49:13-45
+388            android:screenOrientation="sensorLandscape"
+388-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:50:13-56
+389            android:stateNotNeeded="true"
+389-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:51:13-42
+390            android:theme="@style/zxing_CaptureTheme"
+390-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:52:13-54
+391            android:windowSoftInputMode="stateAlwaysHidden" />
+391-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\gupta\.gradle\caches\transforms-3\9b6cacf33fdcc5b38a1db81920651240\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:53:13-60
+392    </application>
+393
+394</manifest>

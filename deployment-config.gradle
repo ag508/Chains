@@ -1,0 +1,200 @@
+// Chain Messaging - Deployment Configuration
+
+android {
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.chain.messaging"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        // ProGuard configuration for release builds
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-deployment.pro'
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            
+            buildConfigField "boolean", "ENABLE_LOGGING", "true"
+            buildConfigField "String", "BUILD_ENVIRONMENT", '"debug"'
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            
+            // Enable ProGuard optimization
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-deployment.pro'
+            
+            buildConfigField "boolean", "ENABLE_LOGGING", "false"
+            buildConfigField "String", "BUILD_ENVIRONMENT", '"production"'
+            
+            // Signing configuration (configure in local.properties or CI/CD)
+            signingConfig signingConfigs.release
+        }
+
+        staging {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging"
+            
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-deployment.pro'
+            
+            buildConfigField "boolean", "ENABLE_LOGGING", "true"
+            buildConfigField "String", "BUILD_ENVIRONMENT", '"staging"'
+        }
+    }
+
+    // Signing configurations
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        
+        release {
+            // Configure these in local.properties or CI/CD environment
+            storeFile file(project.findProperty("RELEASE_STORE_FILE") ?: "release.keystore")
+            storePassword project.findProperty("RELEASE_STORE_PASSWORD") ?: ""
+            keyAlias project.findProperty("RELEASE_KEY_ALIAS") ?: ""
+            keyPassword project.findProperty("RELEASE_KEY_PASSWORD") ?: ""
+        }
+    }
+
+    // Compilation options
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += [
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+        ]
+    }
+
+    // Compose configuration
+    buildFeatures {
+        compose true
+        buildConfig true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.8'
+    }
+
+    // Packaging options
+    packagingOptions {
+        resources {
+            excludes += [
+                '/META-INF/{AL2.0,LGPL2.1}',
+                '/META-INF/DEPENDENCIES',
+                '/META-INF/LICENSE',
+                '/META-INF/LICENSE.txt',
+                '/META-INF/NOTICE',
+                '/META-INF/NOTICE.txt'
+            ]
+        }
+    }
+
+    // Test options
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+        
+        animationsDisabled = true
+    }
+
+    // Lint options
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError false
+        warningsAsErrors false
+        
+        disable 'MissingTranslation', 'ExtraTranslation'
+        
+        // Security checks
+        check 'HardcodedDebugMode', 'HardcodedValues', 'SecureRandom'
+    }
+
+    // Bundle configuration for Play Store
+    bundle {
+        language {
+            enableSplit = false
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+}
+
+// Deployment tasks
+task generateDeploymentReport {
+    doLast {
+        println "=== Chain Messaging Deployment Report ==="
+        println "Version: ${android.defaultConfig.versionName}"
+        println "Version Code: ${android.defaultConfig.versionCode}"
+        println "Application ID: ${android.defaultConfig.applicationId}"
+        println "Min SDK: ${android.defaultConfig.minSdk}"
+        println "Target SDK: ${android.defaultConfig.targetSdk}"
+        println "Compile SDK: ${android.compileSdk}"
+        println "Build Time: ${new Date()}"
+        println "========================================="
+    }
+}
+
+task validateDeployment {
+    doLast {
+        // Validate deployment readiness
+        def errors = []
+        
+        if (!file("app/release.keystore").exists() && !project.hasProperty("RELEASE_STORE_FILE")) {
+            errors.add("Release keystore not configured")
+        }
+        
+        if (!project.hasProperty("RELEASE_STORE_PASSWORD")) {
+            errors.add("Release store password not configured")
+        }
+        
+        if (errors.isEmpty()) {
+            println "✅ Deployment validation passed"
+        } else {
+            println "❌ Deployment validation failed:"
+            errors.each { println "  - $it" }
+            throw new GradleException("Deployment validation failed")
+        }
+    }
+}
+
+// Run validation before release builds
+tasks.whenTaskAdded { task ->
+    if (task.name == 'assembleRelease' || task.name == 'bundleRelease') {
+        task.dependsOn validateDeployment
+        task.finalizedBy generateDeploymentReport
+    }
+}

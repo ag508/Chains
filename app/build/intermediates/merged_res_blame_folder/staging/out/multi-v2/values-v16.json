@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.chain.messaging.app-mergeStagingResources-83:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\gupta\\.gradle\\caches\\transforms-3\\2f5d1ac6caa1e6d131beccaab74bd9b2\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gupta\\.gradle\\caches\\transforms-3\\b17c88d11068693c4f40edf5dca642a7\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                }
+            ]
+        }
+    ]
+}
