@@ -304,7 +304,7 @@ class CallViewModel @Inject constructor(
                     )
                 }
             }
-            is CallEvent.IncomingCall -> {
+            is CallEvent.IncomingCallEvent -> {
                 // Handle incoming call event if needed for this view
                 val localEvent = event
                 if (localEvent.callSession.id == currentCallId) {
@@ -335,6 +335,10 @@ class CallViewModel @Inject constructor(
             is CallEvent.IceCandidateReceived -> {
                 // Handle ICE candidate - typically handled by WebRTC manager
                 // No UI state changes needed for this event
+            }
+            else -> {
+                // Handle any other event types that don't require UI updates
+                // This ensures the when expression is exhaustive
             }
         }
     }

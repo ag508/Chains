@@ -77,8 +77,8 @@ class CallHistoryViewModel @Inject constructor(
     fun clearCallHistory() {
         viewModelScope.launch {
             try {
-                callNotificationService.clearAllCallNotifications()
-                
+                callNotificationRepository.clearAllCallNotifications()
+
                 _uiState.value = _uiState.value.copy(
                     callHistory = emptyList()
                 )

@@ -112,9 +112,9 @@ class WebRTCManagerImpl @Inject constructor(
         // Create offer
         val offer = createOffer(peerConnection)
         peerConnection.setLocalDescription(createSdpObserver(), offer)
-        
-        _callEvents.emit(CallEvent.IncomingCall(callSession))
-        
+
+        _callEvents.emit(CallEvent.IncomingCallEvent(callSession))
+
         return callSession
     }
     
@@ -147,9 +147,9 @@ class WebRTCManagerImpl @Inject constructor(
         // Update call status
         val endedSession = callSession.copy(status = CallStatus.ENDED)
         activeCalls[callId] = endedSession
-        
-        _callEvents.emit(CallEvent.CallEnded(callId, null))
-        
+
+        _callEvents.emit(CallEvent.CallEnded(callId, "Call ended"))
+
         // Clean up after a delay
         activeCalls.remove(callId)
     }
@@ -304,7 +304,7 @@ class WebRTCManagerImpl @Inject constructor(
         override fun onRemoveStream(stream: MediaStream?) {
             val callId = activeCalls.values.find { call -> call.peerId == peerId }?.id
             callId?.let { id ->
-                _callEvents.tryEmit(CallEvent.RemoteStreamRemoved(id))
+                _callEvents.tryEmit(CallEvent.RemoteStreamRemoved(id, stream))
             }
         }
         
