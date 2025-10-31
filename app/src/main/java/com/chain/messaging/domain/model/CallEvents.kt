@@ -130,7 +130,13 @@ data class CallNotification(
     val timestamp: Long,
     val isVideo: Boolean,
     val duration: Long? = null
-)
+) {
+    /**
+     * Alias for peerName to maintain backwards compatibility
+     */
+    val callerName: String
+        get() = peerName
+}
 
 /**
  * Types of call notifications
@@ -139,5 +145,7 @@ enum class CallNotificationType {
     INCOMING,
     MISSED,
     OUTGOING,
-    REJECTED
+    REJECTED,
+    ONGOING,
+    ENDED
 }

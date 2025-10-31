@@ -126,7 +126,10 @@ class SecurityMonitoringManagerImpl @Inject constructor(
         val status = _securityStatus.value
         return when (status.level) {
             SecurityLevel.SECURE -> "Secure - No active threats detected"
+            SecurityLevel.LOW -> "Low - Minimal security concerns"
+            SecurityLevel.MEDIUM -> "Medium - Some security issues detected"
             SecurityLevel.WARNING -> "Warning - ${status.activeThreats} potential threats detected"
+            SecurityLevel.HIGH -> "High - Elevated security risk detected"
             SecurityLevel.DANGER -> "Danger - ${status.activeThreats} active threats require attention"
             SecurityLevel.CRITICAL -> "Critical - Immediate action required for ${status.activeThreats} threats"
         }
@@ -173,25 +176,49 @@ class SecurityMonitoringManagerImpl @Inject constructor(
     override suspend fun getSecurityMetrics(): SecurityMetrics {
         val now = LocalDateTime.now()
         val last24Hours = now.minusDays(1)
-        
+        val last7Days = now.minusDays(7)
+
         val allEvents = securityEventStorage.getAllEvents()
-        val recentEvents = allEvents.filter { it.timestamp.isAfter(last24Hours) }
-        
+        val events24h = allEvents.filter { it.timestamp.isAfter(last24Hours) }
+        val events7d = allEvents.filter { it.timestamp.isAfter(last7Days) }
+
         val lastBreachAttempt = allEvents
             .filter { it.severity == SecuritySeverity.CRITICAL }
             .maxByOrNull { it.timestamp }
             ?.timestamp
-        
+
         val securityScore = calculateSecurityScore(allEvents)
-        
+
+        // Calculate verification rate (percentage of verified contacts)
+        val verifiedCount = _securityStatus.value.verifiedContacts
+        val totalCount = _securityStatus.value.totalContacts
+        val verificationRate = if (totalCount > 0) {
+            verifiedCount.toFloat() / totalCount.toFloat()
+        } else {
+            1.0f
+        }
+
+        // Determine threat level based on critical alerts and recent events
+        val criticalCount = activeAlerts.values.count {
+            it.severity == SecuritySeverity.CRITICAL && !it.isAcknowledged
+        }
+        val threatLevel = when {
+            criticalCount > 0 || events24h.size > 20 -> com.chain.messaging.domain.model.ThreatLevel.HIGH
+            events24h.size > 10 -> com.chain.messaging.domain.model.ThreatLevel.MEDIUM
+            else -> com.chain.messaging.domain.model.ThreatLevel.LOW
+        }
+
         return SecurityMetrics(
-            totalEvents = allEvents.size,
-            eventsLast24Hours = recentEvents.size,
-            criticalAlertsActive = activeAlerts.values.count { 
-                it.severity == SecuritySeverity.CRITICAL && !it.isAcknowledged 
-            },
-            averageResponseTime = calculateAverageResponseTime(),
+            totalAlerts = allEvents.size,
+            alertsLast24h = events24h.size,
+            alertsLast7d = events7d.size,
+            verificationRate = verificationRate,
+            threatLevel = threatLevel,
             securityScore = securityScore,
+            totalEvents = allEvents.size,
+            eventsLast24Hours = events24h.size,
+            criticalAlertsActive = criticalCount,
+            averageResponseTime = calculateAverageResponseTime(),
             lastBreachAttempt = lastBreachAttempt,
             eventsByType = eventCounters.toMap()
         )

@@ -470,3 +470,31 @@ enum class NetworkQuality {
  * Exception for cryptographic operations
  */
 class CryptoException(message: String, cause: Throwable? = null) : Exception(message, cause)
+
+/**
+ * Represents a threat indicator detected by the system
+ */
+data class ThreatIndicator(
+    val id: String,
+    val type: ThreatType,
+    val severity: SecuritySeverity,
+    val description: String,
+    val confidence: Float, // 0.0 to 1.0
+    val evidence: Map<String, Any>,
+    val timestamp: LocalDateTime,
+    val source: String
+)
+
+/**
+ * Types of threats that can be detected
+ */
+enum class ThreatType {
+    NETWORK_ANOMALY,
+    ENCRYPTION_COMPROMISE,
+    AUTHENTICATION_ANOMALY,
+    BLOCKCHAIN_ATTACK,
+    DEVICE_COMPROMISE,
+    MALWARE_ACTIVITY,
+    DATA_BREACH,
+    SOCIAL_ENGINEERING
+}

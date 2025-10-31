@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.chain.messaging.domain.model.Message
 import com.chain.messaging.domain.model.MessageStatus
 import com.chain.messaging.domain.model.MessageType
+import com.chain.messaging.domain.model.getMediaContent
 import com.chain.messaging.presentation.media.MediaPickerType
 import com.chain.messaging.presentation.media.MediaViewer
 import kotlinx.coroutines.launch
