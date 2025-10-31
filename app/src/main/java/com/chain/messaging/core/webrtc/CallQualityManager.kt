@@ -213,7 +213,7 @@ class CallQualityManager @Inject constructor(
     private suspend fun getWebRTCStats(peerConnection: PeerConnection): WebRTCStats {
         // Collect actual WebRTC statistics using RTCStatsReport
         return try {
-            suspendCoroutine<CallQualityStats> { continuation ->
+            suspendCoroutine<WebRTCStats> { continuation ->
                 peerConnection.getStats { rtcStatsReport ->
                     try {
                         val stats = parseRTCStatsReport(rtcStatsReport)

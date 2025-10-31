@@ -74,11 +74,11 @@ class NetworkMonitorImpl @Inject constructor(
         }
     }
     
-    override suspend fun getNetworkQuality(): NetworkQuality {
+    override suspend fun getNetworkQuality(): NetworkQualityMetrics {
         val activeNetwork = connectivityManager.activeNetwork
         val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
-        
-        return NetworkQuality(
+
+        return NetworkQualityMetrics(
             latency = measureLatency(),
             bandwidth = estimateBandwidth(networkCapabilities),
             isStable = isConnectionStable(),
