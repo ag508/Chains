@@ -29,7 +29,7 @@ interface NetworkMonitor {
     /**
      * Get current network quality metrics
      */
-    suspend fun getNetworkQuality(): NetworkQuality
+    suspend fun getNetworkQuality(): NetworkQualityMetrics
     
     /**
      * Start network monitoring
@@ -55,7 +55,7 @@ enum class NetworkType {
 /**
  * Network quality metrics
  */
-data class NetworkQuality(
+data class NetworkQualityMetrics(
     val latency: Long, // in milliseconds
     val bandwidth: Long, // in bytes per second
     val isStable: Boolean,
