@@ -164,4 +164,20 @@ class SignalProtocolStoreAdapter @Inject constructor(
      * Get access to the Chain-specific key manager
      */
     fun getChainKeyManager(): KeyManager = keyManager
+
+    /**
+     * Store a sender key for group messaging
+     * Delegates to the Chain-specific sender key store
+     */
+    fun storeSenderKey(senderKeyName: SignalSenderKeyName, record: SignalSenderKeyRecord) {
+        chainSenderKeyStore.storeSenderKey(senderKeyName, record)
+    }
+
+    /**
+     * Load a sender key for group messaging
+     * Delegates to the Chain-specific sender key store
+     */
+    fun loadSenderKey(senderKeyName: SignalSenderKeyName): SignalSenderKeyRecord? {
+        return chainSenderKeyStore.loadSenderKey(senderKeyName)
+    }
 }

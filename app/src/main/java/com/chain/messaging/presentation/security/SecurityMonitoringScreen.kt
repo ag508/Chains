@@ -307,6 +307,7 @@ fun SecurityAlertCard(
                 SecuritySeverity.HIGH -> MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.7f)
                 SecuritySeverity.MEDIUM -> MaterialTheme.colorScheme.tertiaryContainer
                 SecuritySeverity.LOW -> MaterialTheme.colorScheme.surfaceVariant
+                null -> MaterialTheme.colorScheme.surfaceVariant
             }
         )
     ) {
@@ -325,13 +326,14 @@ fun SecurityAlertCard(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = alert.severity.name,
+                        text = alert.severity?.name ?: "UNKNOWN",
                         style = MaterialTheme.typography.labelSmall,
                         color = when (alert.severity) {
                             SecuritySeverity.CRITICAL -> MaterialTheme.colorScheme.error
                             SecuritySeverity.HIGH -> MaterialTheme.colorScheme.error
                             SecuritySeverity.MEDIUM -> MaterialTheme.colorScheme.tertiary
                             SecuritySeverity.LOW -> MaterialTheme.colorScheme.onSurfaceVariant
+                            null -> MaterialTheme.colorScheme.onSurfaceVariant
                         }
                     )
                 }

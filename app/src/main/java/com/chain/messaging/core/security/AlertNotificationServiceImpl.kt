@@ -96,17 +96,17 @@ class AlertNotificationServiceImpl @Inject constructor(
         )
         
         val notification = NotificationCompat.Builder(context, SECURITY_CHANNEL_ID)
-            .setSmallIcon(getNotificationIcon(alert.severity))
+            .setSmallIcon(getNotificationIcon(alert.severity ?: SecuritySeverity.LOW))
             .setContentTitle(alert.title)
             .setContentText(alert.message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(alert.message))
-            .setPriority(getNotificationPriority(alert.severity))
+            .setPriority(getNotificationPriority(alert.severity ?: SecuritySeverity.LOW))
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .apply {
                 // Add action buttons for high severity alerts
-                if (alert.severity >= SecuritySeverity.HIGH && alert.recommendedActions.isNotEmpty()) {
+                if ((alert.severity ?: SecuritySeverity.LOW) >= SecuritySeverity.HIGH && alert.recommendedActions.isNotEmpty()) {
                     val actionIntent = Intent(context, SecurityActionReceiver::class.java).apply {
                         putExtra("alert_id", alert.id)
                         putExtra("action", alert.recommendedActions.first())
@@ -149,16 +149,17 @@ class AlertNotificationServiceImpl @Inject constructor(
     
     private fun shouldSendNotification(alert: SecurityAlert): Boolean {
         // Check minimum severity
-        if (alert.severity < notificationPreferences.minimumSeverity) {
+        val alertSeverity = alert.severity ?: SecuritySeverity.LOW
+        if (alertSeverity < notificationPreferences.minimumSeverity) {
             return false
         }
-        
+
         // Check quiet hours
         if (notificationPreferences.quietHoursEnabled && isInQuietHours()) {
             // Only send critical alerts during quiet hours
-            return alert.severity == SecuritySeverity.CRITICAL
+            return alertSeverity == SecuritySeverity.CRITICAL
         }
-        
+
         return true
     }
     

@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.webrtc.EglBase
+import org.webrtc.MediaStream
 import org.webrtc.VideoTrack
 import javax.inject.Inject
 
@@ -91,7 +92,7 @@ class CallViewModel @Inject constructor(
                     // Get local media stream
                     val localStream = webRTCManager.getLocalMediaStream(callSession.isVideo)
                     val localVideoTrack = if (callSession.isVideo) {
-                        localStream.videoTracks.firstOrNull()
+                        localStream.videoTracks?.firstOrNull()
                     } else null
                     
                     _uiState.value = _uiState.value.copy(
@@ -116,12 +117,13 @@ class CallViewModel @Inject constructor(
     fun toggleMute() {
         val currentState = _uiState.value
         val newMuteState = !currentState.isMuted
-        
+
         // Toggle audio track enabled state
-        currentState.callSession?.localStream?.audioTracks?.forEach { audioTrack ->
+        val localStream = currentState.callSession?.localStream as? MediaStream
+        localStream?.audioTracks?.forEach { audioTrack ->
             audioTrack.setEnabled(!newMuteState)
         }
-        
+
         _uiState.value = currentState.copy(isMuted = newMuteState)
     }
     
@@ -134,7 +136,7 @@ class CallViewModel @Inject constructor(
                 if (newVideoState) {
                     // Enable video
                     val localStream = webRTCManager.getLocalMediaStream(true)
-                    val videoTrack = localStream.videoTracks.firstOrNull()
+                    val videoTrack = localStream.videoTracks?.firstOrNull()
                     
                     _uiState.value = currentState.copy(
                         isVideoEnabled = true,
@@ -275,7 +277,8 @@ class CallViewModel @Inject constructor(
             is CallEvent.RemoteStreamAdded -> {
                 val localEvent = event // Local variable for smart cast
                 if (localEvent.callId == currentCallId) {
-                    val remoteVideoTrack = localEvent.stream.videoTracks.firstOrNull()
+                    val remoteStream = localEvent.stream as? MediaStream
+                    val remoteVideoTrack = remoteStream?.videoTracks?.firstOrNull()
                     _uiState.value = _uiState.value.copy(
                         remoteVideoTrack = remoteVideoTrack,
                         callSession = _uiState.value.callSession?.copy(
