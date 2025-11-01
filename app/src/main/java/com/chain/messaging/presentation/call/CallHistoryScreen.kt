@@ -207,6 +207,10 @@ private fun CallTypeIcon(
             if (isVideo) Icons.Default.Videocam to Color.Green
             else Icons.Default.CallReceived to Color.Green
         }
+        CallNotificationType.OUTGOING -> {
+            if (isVideo) Icons.Default.Videocam to MaterialTheme.colorScheme.primary
+            else Icons.Default.CallMade to MaterialTheme.colorScheme.primary
+        }
         CallNotificationType.ONGOING -> {
             if (isVideo) Icons.Default.Videocam to MaterialTheme.colorScheme.primary
             else Icons.Default.Call to MaterialTheme.colorScheme.primary
@@ -214,6 +218,10 @@ private fun CallTypeIcon(
         CallNotificationType.MISSED -> {
             if (isVideo) Icons.Default.VideocamOff to Color.Red
             else Icons.Default.CallMissed to Color.Red
+        }
+        CallNotificationType.REJECTED -> {
+            if (isVideo) Icons.Default.VideocamOff to Color.Red
+            else Icons.Default.CallEnd to Color.Red
         }
         CallNotificationType.ENDED -> {
             if (isVideo) Icons.Default.Videocam to MaterialTheme.colorScheme.onSurfaceVariant
@@ -233,8 +241,10 @@ private fun CallTypeIcon(
 private fun getCallTypeText(type: CallNotificationType, isVideo: Boolean): String {
     return when (type) {
         CallNotificationType.INCOMING -> if (isVideo) "Incoming video call" else "Incoming call"
+        CallNotificationType.OUTGOING -> if (isVideo) "Outgoing video call" else "Outgoing call"
         CallNotificationType.ONGOING -> if (isVideo) "Video call" else "Voice call"
         CallNotificationType.MISSED -> if (isVideo) "Missed video call" else "Missed call"
+        CallNotificationType.REJECTED -> if (isVideo) "Rejected video call" else "Rejected call"
         CallNotificationType.ENDED -> if (isVideo) "Video call ended" else "Call ended"
     }
 }
@@ -243,8 +253,10 @@ private fun getCallTypeText(type: CallNotificationType, isVideo: Boolean): Strin
 private fun getCallTypeColor(type: CallNotificationType): Color {
     return when (type) {
         CallNotificationType.INCOMING -> Color.Green
+        CallNotificationType.OUTGOING -> MaterialTheme.colorScheme.primary
         CallNotificationType.ONGOING -> MaterialTheme.colorScheme.primary
         CallNotificationType.MISSED -> Color.Red
+        CallNotificationType.REJECTED -> Color.Red
         CallNotificationType.ENDED -> MaterialTheme.colorScheme.onSurfaceVariant
     }
 }

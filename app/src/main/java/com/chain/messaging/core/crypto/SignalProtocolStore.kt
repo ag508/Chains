@@ -119,7 +119,7 @@ class SignalProtocolStore @Inject constructor(
     }
 
     // Additional method that might be required by newer Signal Protocol versions
-    fun loadExistingSessions(addresses: MutableList<SignalProtocolAddress>): MutableList<SessionRecord> {
+    override fun loadExistingSessions(addresses: MutableList<SignalProtocolAddress>): MutableList<SessionRecord> {
         val sessions = mutableListOf<SessionRecord>()
         addresses.forEach { address ->
             if (containsSession(address)) {
