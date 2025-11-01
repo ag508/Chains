@@ -178,6 +178,17 @@ class SignalProtocolStoreAdapter @Inject constructor(
     }
 
     /**
+     * Load a sender key for group messaging (Signal Protocol interface method)
+     * Required by SignalProtocolStore interface
+     *
+     * Note: This is a stub implementation as SenderKey groups are not fully supported in libsignal 0.42.0
+     */
+    override fun loadSenderKey(address: SignalProtocolAddress, distributionId: java.util.UUID): org.signal.libsignal.protocol.groups.state.SenderKeyRecord? {
+        // Stub implementation - SenderKey groups functionality is not fully available in libsignal 0.42.0
+        throw UnsupportedOperationException("SenderKey groups are not supported in libsignal-android 0.42.0")
+    }
+
+    /**
      * Store a sender key for group messaging
      * Delegates to the Chain-specific sender key store
      */

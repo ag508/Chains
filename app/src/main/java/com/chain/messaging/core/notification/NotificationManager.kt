@@ -2,6 +2,7 @@ package com.chain.messaging.core.notification
 
 import com.chain.messaging.domain.model.Message
 import com.chain.messaging.domain.model.NotificationSettings
+import com.chain.messaging.domain.repository.ChatRepository
 import com.chain.messaging.domain.repository.MessageRepository
 import com.chain.messaging.domain.repository.SettingsRepository
 import com.chain.messaging.domain.repository.UserRepository
@@ -32,6 +33,7 @@ class NotificationManager @Inject constructor(
     private val notificationActionHandler: NotificationActionHandler,
     private val messagingService: MessagingService,
     private val messageRepository: MessageRepository,
+    private val chatRepository: ChatRepository,
     private val userRepository: UserRepository,
     private val settingsRepository: SettingsRepository
 ) {
