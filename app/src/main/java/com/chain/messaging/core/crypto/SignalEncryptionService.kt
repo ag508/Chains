@@ -16,7 +16,7 @@ import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SessionCipher
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.groups.GroupCipher
-import org.signal.libsignal.protocol.groups.SenderKeyName
+import com.chain.messaging.core.crypto.SignalSenderKeyName
 import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.PreKeySignalMessage
 import org.signal.libsignal.protocol.message.SignalMessage
@@ -163,7 +163,7 @@ class SignalEncryptionService @Inject constructor(
      * Encrypt a group message using sender keys
      */
     suspend fun encryptGroupMessage(
-        senderKeyName: SenderKeyName,
+        senderKeyName: SignalSenderKeyName,
         message: ByteArray
     ): Result<EncryptedGroupMessage> {
         return try {
@@ -190,7 +190,7 @@ class SignalEncryptionService @Inject constructor(
      * Decrypt a group message using sender keys
      */
     suspend fun decryptGroupMessage(
-        senderKeyName: SenderKeyName,
+        senderKeyName: SignalSenderKeyName,
         encryptedMessage: EncryptedGroupMessage
     ): Result<ByteArray> {
         return try {

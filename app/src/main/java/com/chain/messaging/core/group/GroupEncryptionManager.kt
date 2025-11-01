@@ -1,7 +1,7 @@
 package com.chain.messaging.core.group
 
 import com.chain.messaging.core.crypto.EncryptedGroupMessage
-import org.signal.libsignal.protocol.groups.SenderKeyName
+import com.chain.messaging.core.crypto.SignalSenderKeyName
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import kotlinx.coroutines.flow.Flow
 

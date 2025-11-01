@@ -60,7 +60,7 @@ class NotificationManager @Inject constructor(
         // Don't show notification for own messages
         if (message.senderId == currentUserId) return
         
-        val settings = settingsRepository.getUserSettings(currentUserId)?.notifications
+        val settings = settingsRepository.getUserSettings()?.notifications
             ?: return
         
         // Check if notifications are enabled
@@ -74,12 +74,12 @@ class NotificationManager @Inject constructor(
         val senderName = sender?.displayName ?: "Unknown"
         
         // Get chat info and unread count
-        val chat = messageRepository.getChatById(message.chatId)
+        val chat = chatRepository.getChatById(message.chatId)
         val chatName = if (message.chatId.startsWith("group_")) {
             chat?.name
         } else null
-        
-        val unreadCount = messageRepository.getUnreadMessageCount(message.chatId, currentUserId)
+
+        val unreadCount = chatRepository.getUnreadMessageCount(message.chatId)
         
         notificationService.showMessageNotification(
             message = message,
@@ -99,7 +99,7 @@ class NotificationManager @Inject constructor(
         isVideo: Boolean,
         currentUserId: String
     ) {
-        val settings = settingsRepository.getUserSettings(currentUserId)?.notifications
+        val settings = settingsRepository.getUserSettings()?.notifications
             ?: return
         
         if (!settings.callNotifications) return
@@ -157,12 +157,13 @@ class NotificationManager @Inject constructor(
     }
     
     private fun observeIncomingMessages() {
-        messagingService.getIncomingMessages()
-            .onEach { message ->
-                // This will be handled by the messaging service calling showMessageNotification
-                // when a new message arrives
-            }
-            .launchIn(coroutineScope)
+        coroutineScope.launch {
+            messageRepository.getIncomingMessages()
+                .forEach { message ->
+                    // This will be handled by the messaging service calling showMessageNotification
+                    // when a new message arrives
+                }
+        }
     }
     
     private fun observeNotificationActions() {
@@ -209,8 +210,8 @@ class NotificationManager @Inject constructor(
     private suspend fun handleMarkAsRead(chatId: String) {
         try {
             // Mark messages as read
-            messageRepository.markChatAsRead(chatId)
-            
+            chatRepository.markChatAsRead(chatId)
+
             // Clear the notification
             clearChatNotification(chatId)
         } catch (e: Exception) {

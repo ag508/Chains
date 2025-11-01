@@ -81,7 +81,7 @@ class SignalProtocolStoreAdapter @Inject constructor(
     }
 
     // Additional method that might be required by SessionStore interface
-    fun loadExistingSessions(addresses: List<SignalProtocolAddress>): List<org.signal.libsignal.protocol.state.SessionRecord> {
+    override fun loadExistingSessions(addresses: List<SignalProtocolAddress>): List<org.signal.libsignal.protocol.state.SessionRecord> {
         return addresses.map { address -> loadSession(address) }
     }
 
@@ -164,6 +164,18 @@ class SignalProtocolStoreAdapter @Inject constructor(
      * Get access to the Chain-specific key manager
      */
     fun getChainKeyManager(): KeyManager = keyManager
+
+    /**
+     * Store a sender key for group messaging (Signal Protocol interface method)
+     * Required by SignalProtocolStore interface
+     *
+     * Note: This is a stub implementation as SenderKey groups are not fully supported in libsignal 0.42.0
+     */
+    override fun storeSenderKey(address: SignalProtocolAddress, distributionId: java.util.UUID, record: org.signal.libsignal.protocol.groups.state.SenderKeyRecord) {
+        // Stub implementation - SenderKey groups functionality is not fully available in libsignal 0.42.0
+        // We maintain our own stub implementation for compilation compatibility
+        throw UnsupportedOperationException("SenderKey groups are not supported in libsignal-android 0.42.0")
+    }
 
     /**
      * Store a sender key for group messaging
