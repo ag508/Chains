@@ -389,7 +389,7 @@ class CallQualityManager @Inject constructor(
         
         return when {
             bandwidthInfo == null -> VideoQuality.STANDARD
-            bandwidthInfo.availableBandwidth > 2000 -> VideoQuality.HIGH
+            bandwidthInfo.availableBandwidth > 2000 -> VideoQuality.HD
             bandwidthInfo.availableBandwidth > 800 -> VideoQuality.STANDARD
             bandwidthInfo.availableBandwidth > 300 -> VideoQuality.LOW
             else -> VideoQuality.AUDIO_ONLY
