@@ -7,6 +7,7 @@ import com.chain.messaging.core.notification.NotificationManager
 import com.chain.messaging.core.notification.NotificationPermissionHelper
 import com.chain.messaging.core.notification.NotificationService
 import com.chain.messaging.core.messaging.MessagingService
+import com.chain.messaging.domain.repository.ChatRepository
 import com.chain.messaging.domain.repository.MessageRepository
 import com.chain.messaging.domain.repository.SettingsRepository
 import com.chain.messaging.domain.repository.UserRepository
@@ -61,6 +62,7 @@ object NotificationModule {
         notificationActionHandler: NotificationActionHandler,
         messagingService: MessagingService,
         messageRepository: MessageRepository,
+        chatRepository: ChatRepository,
         userRepository: UserRepository,
         settingsRepository: SettingsRepository
     ): NotificationManager {
@@ -69,6 +71,7 @@ object NotificationModule {
             notificationActionHandler,
             messagingService,
             messageRepository,
+            chatRepository,
             userRepository,
             settingsRepository
         )
