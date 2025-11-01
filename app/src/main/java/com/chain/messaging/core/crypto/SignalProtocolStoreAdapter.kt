@@ -145,6 +145,12 @@ class SignalProtocolStoreAdapter @Inject constructor(
         // TODO: Implement proper Kyber prekey storage when needed
     }
 
+    override fun loadKyberPreKeys(): MutableList<KyberPreKeyRecord> {
+        // TODO: Implement proper Kyber prekey storage when needed
+        // For now, return empty list
+        return mutableListOf()
+    }
+
     /**
      * Get access to the Chain-specific identity store
      */
