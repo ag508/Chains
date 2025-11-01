@@ -490,7 +490,8 @@ class GroupManagerImpl @Inject constructor(
     }
     
     override fun observeGroup(groupId: String): Flow<GroupChat?> {
-        return chatRepository.observeChat(groupId).map { chat ->
+        return chatRepository.observeChats().map { chats ->
+            val chat = chats.find { it.id == groupId }
             if (chat?.type == ChatType.GROUP) {
                 GroupChat(
                     chat = chat,

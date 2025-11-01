@@ -195,8 +195,9 @@ class NotificationManager @Inject constructor(
     private suspend fun handleNotificationReply(chatId: String, replyText: String) {
         try {
             // Send the reply message
-            messagingService.sendTextMessage(chatId, replyText)
-            
+            // TODO: Replace "current_user" with actual current user ID
+            messagingService.sendTextMessage(chatId, "current_user", replyText)
+
             // Clear the notification since user replied
             clearChatNotification(chatId)
         } catch (e: Exception) {

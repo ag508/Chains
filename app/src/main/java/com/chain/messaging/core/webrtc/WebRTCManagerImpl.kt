@@ -304,7 +304,7 @@ class WebRTCManagerImpl @Inject constructor(
         override fun onRemoveStream(stream: MediaStream?) {
             val callId = activeCalls.values.find { call -> call.peerId == peerId }?.id
             callId?.let { id ->
-                _callEvents.tryEmit(CallEvent.RemoteStreamRemoved(id, stream))
+                _callEvents.tryEmit(CallEvent.RemoteStreamRemoved(id, stream as? Any ?: stream))
             }
         }
         

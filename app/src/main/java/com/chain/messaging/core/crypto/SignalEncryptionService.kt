@@ -161,25 +161,16 @@ class SignalEncryptionService @Inject constructor(
 
     /**
      * Encrypt a group message using sender keys
+     * NOTE: Stubbed out - libsignal 0.42.0 does not support SenderKey/GroupCipher
      */
     suspend fun encryptGroupMessage(
         senderKeyName: SignalSenderKeyName,
         message: ByteArray
     ): Result<EncryptedGroupMessage> {
         return try {
-            val groupCipher = GroupCipher(protocolStore, senderKeyName)
-            val ciphertext = groupCipher.encrypt(message)
-            
-            val encryptedMessage = EncryptedGroupMessage(
-                groupId = senderKeyName.groupId,
-                senderId = senderKeyName.sender.name,
-                deviceId = senderKeyName.sender.deviceId,
-                ciphertext = ciphertext.serialize(),
-                timestamp = System.currentTimeMillis()
-            )
-            
-            Log.d(TAG, "Group message encrypted for ${senderKeyName.groupId}")
-            Result.success(encryptedMessage)
+            // GroupCipher is not available in libsignal 0.42.0
+            // This functionality needs to be implemented with alternative group encryption
+            throw UnsupportedOperationException("Group encryption using SenderKey is not supported in libsignal 0.42.0")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to encrypt group message", e)
             Result.failure(CryptoException("Failed to encrypt group message", e))
@@ -188,18 +179,16 @@ class SignalEncryptionService @Inject constructor(
 
     /**
      * Decrypt a group message using sender keys
+     * NOTE: Stubbed out - libsignal 0.42.0 does not support SenderKey/GroupCipher
      */
     suspend fun decryptGroupMessage(
         senderKeyName: SignalSenderKeyName,
         encryptedMessage: EncryptedGroupMessage
     ): Result<ByteArray> {
         return try {
-            val groupCipher = GroupCipher(protocolStore, senderKeyName)
-            val senderKeyMessage = SenderKeyMessage(encryptedMessage.ciphertext)
-            val plaintext = groupCipher.decrypt(senderKeyMessage)
-            
-            Log.d(TAG, "Group message decrypted from ${senderKeyName.groupId}")
-            Result.success(plaintext)
+            // GroupCipher is not available in libsignal 0.42.0
+            // This functionality needs to be implemented with alternative group encryption
+            throw UnsupportedOperationException("Group decryption using SenderKey is not supported in libsignal 0.42.0")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to decrypt group message", e)
             Result.failure(CryptoException("Failed to decrypt group message", e))
